@@ -22,6 +22,9 @@ body{
 section > div{
 	padding: 20px;
 }
+section > img{
+	width: 15%;
+}
 
 header, nav, section{
 	background: #eee;
@@ -33,6 +36,10 @@ footer{
 	text-align: center;
 }
 
+footer a{
+	margin:0 px 10px 0px 0px;
+}
+
 nav span{
-	margin: 0px 10px 0px 0px;
+	margin: 0px 10px;
 }
