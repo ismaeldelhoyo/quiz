@@ -1,3 +1,13 @@
+<label for="tip" class="rem">Tipo:</label>
+<select name="quiz[tipo]">
+	<% var x; for (x=0; x < tm.length; x++) { %> 
+		<% if(tm[x] === quiz.tipo) { %>	
+			<option value="<%= tm[x] %>" selected><%= tm[x] %></option>
+		<% } else { %>	
+			<option value="<%= tm[x] %>" ><%= tm[x] %></option>
+		<% } %>
+	<% } %>
+</select><p>
 <label for="preg" class="rem">Pregunta:</label>
 <input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/><p>
 <label for="resp" class="rem">Respuesta:</label>
