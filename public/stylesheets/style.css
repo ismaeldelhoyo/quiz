@@ -41,5 +41,10 @@ footer a{
 }
 
 nav span{
-	margin: 0px 10px;
+	margin: 0px 10px 0px opx;
+}
+
+#ErrorMsgs{
+	color:#f61;
+	font-size: smaler;
 }
