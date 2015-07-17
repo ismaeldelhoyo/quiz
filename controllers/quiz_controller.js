@@ -96,7 +96,6 @@ exports.update = function(req, res){
 		if(err){
 			res.render('quizes/edit',{quiz: req.quiz, errors:err.errors});
 		}else{
-			console.log(rq)
 			//save: guarda campos pregunta y respuesta en DB
 			req.quiz.save({
 				fields:["pregunta","respuesta", "tipo"]
