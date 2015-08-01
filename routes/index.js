@@ -22,11 +22,11 @@ router.get('/logout', sessionController.destroy);
 router.get('/quizes', quizcontroller.index);
 router.get('/quizes/:quizId(\\d+)', quizcontroller.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizcontroller.answer);
-router.get('/quizes/new', quizcontroller.new);
-router.post('/quizes/create', quizcontroller.create);
-router.get('/quizes/:quizId(\\d+)/edit', quizcontroller.edit);
-router.put('/quizes/:quizId(\\d+)', quizcontroller.update);
-router.delete('/quizes/:quizId(\\d+)', quizcontroller.destroy);
+router.get('/quizes/new',sessionController.loginRequired, quizcontroller.new);
+router.post('/quizes/create',sessionController.loginRequired, quizcontroller.create);
+router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired, quizcontroller.edit);
+router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizcontroller.update);
+router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizcontroller.destroy);
 
 router.get('/author', function(req, res) {
 	res.render('author');
