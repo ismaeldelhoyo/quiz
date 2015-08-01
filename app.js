@@ -24,8 +24,27 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+
 app.use(cookieParser('Quiz 2015'));
 app.use(session());
+//tiempo de sesion
+app.use(function(req, res, next) {
+    if(req.session.user){// si estamos en una sesion
+        if(!req.session.marcatiempo){//primera vez se pone la marca de tiempo
+            req.session.marcatiempo=(new Date()).getTime();
+            req.session.plazo=120;//ponemos 120 segundos para que pueda controlarse la caducidad de la sesion
+        }else{
+            if((new Date()).getTime()-req.session.marcatiempo > 120000){//se pasó el tiempo y eliminamos la sesión (2min=120000ms)
+                delete req.session.user;     //eliminamos el usuario
+                delete req.session.marcatiempo;    //eliminamos la marca de tiempo
+            }else{//hay actividad se pone nueva marca de tiempo
+                req.session.marcatiempo=(new Date()).getTime();
+                req.session.plazo=120;//ponemos 120 segundos para que pueda controlarse la caducidad de la sesion
+            }
+        }
+    }
+    next();
+});
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
